@@ -1,9 +1,10 @@
 define([
-		"lib-build/tpl!./MobileIntro",
+        "dojo/topic",
+        "lib-build/tpl!./MobileIntro",
 		"lib-build/css!./MobileIntro",
 		"dojo/on"
 	],
-	function(mobileIntro){
+	function(topic, mobileIntro){
 		return function MobileIntro(container, isInBuilder, saveData, mainView)
 		{
 			var _mainView = mainView;
@@ -122,6 +123,8 @@ define([
 			this.selectMobileTheme = function(index){
 				if(index !== 0)
 					_mainView.activateLayer(index);
+
+                topic.publish("story-tab-changed", index);
 				$('#contentPanel').css('display', 'block');
 				$('#mobileIntro').css('display', 'none');
 				$(window).resize();

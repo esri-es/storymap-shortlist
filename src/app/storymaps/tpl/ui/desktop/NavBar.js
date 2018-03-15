@@ -373,6 +373,8 @@ define(["lib-build/tpl!./NavBar",
 					return;
 				var index = $(this).index();
 
+                topic.publish("story-tab-changed", index);
+
 				navigationCallback(index);
 				if(app.isInBuilder && !app.data.getWebAppData().getIsExternalData()){
 					app.addFeatureBar.updateLocatedFeatures();

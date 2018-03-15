@@ -1,11 +1,12 @@
 define([
 		"storymaps/common/utils/CommonHelper",
+        "dojo/topic",
 		"lib-build/css!./MobileFeatureList",
 		"lib-build/css!lib-app/Swiper/swiper",
 		"lib-app/Swiper/swiper",
 		"lib-app/lazysizes.min"
 	],
-	function(CommonHelper){
+	function(CommonHelper, topic){
 		return function MobileFeatureList(container, isInBuilder, saveData, mainView)
 		{
 			var _mainView = mainView;
@@ -171,10 +172,12 @@ define([
 				$('#navThemeRight').on('click', function(){
 					_swiper.slideNext();
 					//$('#mobileThemeBarSlider').slick('slickNext');
+                    topic.publish("story-tab-changed", $(this).index());
 				});
 				$('#navThemeLeft').on('click', function(){
 					_swiper.slidePrev();
 					//$('#mobileThemeBarSlider').slick('slickPrev');
+                    topic.publish("story-tab-changed", $(this).index());
 				});
 				/*$('#mobileThemeBar').on('click', function(){
 					hideBookmarks();
